@@ -29,6 +29,7 @@
     ],
     "require": {
         "php": "^8.3",
+        "google/apiclient": "^2.0",
         "illuminate/support": "^12.0|^13.0"
     },
     "require-dev": {
@@ -38,9 +39,13 @@
     "suggest": {
     },
     "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup",
         "test": "vendor/bin/phpunit"
     },
     "extra": {
+        "google/apiclient-services": [
+            "Gmail"
+        ],
         "laravel": {
             "providers": [
                 "Vectorial1024\\LaravelGmail\\LaravelGmailServiceProvider"
