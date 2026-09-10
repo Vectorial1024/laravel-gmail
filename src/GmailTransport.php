@@ -4,18 +4,54 @@ declare(strict_types=1);
 
 namespace Vectorial1024\LaravelGmail;
 
+use Google\Client;
+use Google\Service\Exception;
+use Google\Service\Gmail;
+use Google\Service\Gmail\Message;
+use InvalidArgumentException;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\AbstractTransport;
+use Symfony\Component\Mime\MessageConverter;
+use Symfony\Component\Mime\Message as SymfonyMessage;
 
 class GmailTransport extends AbstractTransport
 {
+    protected Client $googleClient;
+    protected Gmail $gmailService;
+
+    public function __construct(?EventDispatcherInterface $dispatcher = null, ?LoggerInterface $logger = null)
+    {
+        parent::__construct($dispatcher, $logger);
+
+        $this->googleClient = new Client();
+        $this->googleClient->addScope(Gmail::GMAIL_SEND);
+        $this->googleClient->useApplicationDefaultCredentials();
+        // todo read key from user config
+
+        $this->gmailService = new Gmail($this->googleClient);
+    }
+
     public function __toString(): string
     {
         return 'gmail';
     }
 
+    /**
+     * @throws Exception
+     */
     protected function doSend(SentMessage $message): void
     {
-        // TODO: Implement doSend() method.
+        // todo various interfacing and customization
+        $emailMsg = $message->getOriginalMessage();
+        if (!($emailMsg instanceof SymfonyMessage)) {
+            throw new InvalidArgumentException("Could not send mail: message is not of Symfony Message class");
+        }
+        $convertedBody = MessageConverter::toEmail($emailMsg);
+
+        $mail = new Message();
+        $mail->setRaw($convertedBody->getTextBody());
+        $this->gmailService->users_messages->send("me", $mail);
     }
 }
