@@ -21,9 +21,9 @@ class GmailTransport extends AbstractTransport
     protected Client $googleClient;
     protected Gmail $gmailService;
 
-    public function __construct(?EventDispatcherInterface $dispatcher = null, ?LoggerInterface $logger = null)
+    public function __construct()
     {
-        parent::__construct($dispatcher, $logger);
+        parent::__construct();
 
         $this->googleClient = new Client();
         $this->googleClient->addScope(Gmail::GMAIL_SEND);

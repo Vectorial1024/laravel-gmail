@@ -25,7 +25,7 @@ class LaravelGmailServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Mail::extend('gmail', function (array $config = []) {
-            // todo return new instance of the gmail transport
+            return new GmailTransport();
         });
     }
 }
