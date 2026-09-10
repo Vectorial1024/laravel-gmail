@@ -9,8 +9,6 @@ use Google\Service\Exception;
 use Google\Service\Gmail;
 use Google\Service\Gmail\Message;
 use InvalidArgumentException;
-use Psr\EventDispatcher\EventDispatcherInterface;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\AbstractTransport;
 use Symfony\Component\Mime\MessageConverter;
