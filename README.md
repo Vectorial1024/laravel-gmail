@@ -21,7 +21,7 @@ There are currently two ways to integrate with Gmail:
 - using OAuth2, mostly for personal accounts
 
 Again, this package deals with **using Google Service Account Key from Google Workspace to send email**.
-This package does NOT deal with using OAuth2 tokens for sending email.
+This package does NOT deal with using OAuth2 tokens to send email.
 
 ## Install
 via Composer:
