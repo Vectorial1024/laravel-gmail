@@ -1,0 +1,53 @@
+{
+    "name": "vectorial1024/laravel-gmail",
+    "description": "Gmail transport for Laravel, to send emails using Google Service Account Key, for Google Workspace",
+    "keywords": [
+        "laravel",
+        "mail",
+        "gmail",
+        "google",
+        "transport",
+        "google service account",
+        "google workspace"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vectorial1024\\LaravelGmail\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vectorial1024\\LaravelGmail\\Test\\": "test/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vectorial1024"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^12.0|^13.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.0",
+        "orchestra/testbench": "^10.0|^11.0"
+    },
+    "suggest": {
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vectorial1024\\LaravelGmail\\GmailTransportServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
