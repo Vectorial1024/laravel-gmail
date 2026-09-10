@@ -43,7 +43,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Vectorial1024\\LaravelGmail\\GmailTransportServiceProvider"
+                "Vectorial1024\\LaravelGmail\\LaravelGmailServiceProvider"
             ]
         }
     },
